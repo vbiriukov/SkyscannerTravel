@@ -12,13 +12,16 @@ namespace SkyscannerTravel.Helpers
     public class HttpHelper
     {
         private const string HTTP_METHOD_GET = "GET";
+        private const string HTTP_ACCEPT_TYPE = "application/json";
 
         public static async Task<(HttpStatusCode, R)> OnGet<R>(string url)
         {
             try
             {
                 var request = WebRequest.Create(url) as HttpWebRequest;
+
                 request.Method = HTTP_METHOD_GET;
+                request.Accept = HTTP_ACCEPT_TYPE;
 
                 using (var response = await request.GetResponseAsync() as HttpWebResponse)
                 {
@@ -31,7 +34,7 @@ namespace SkyscannerTravel.Helpers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return (HttpStatusCode.InternalServerError, default(R));
             }

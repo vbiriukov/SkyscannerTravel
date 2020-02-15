@@ -1,0 +1,700 @@
+{
+  "Currencies": [
+    {
+      "Code": "EUR",
+      "Symbol": "ˆ",
+      "ThousandsSeparator": ".",
+      "DecimalSeparator": ",",
+      "SymbolOnLeft": "false",
+      "SpaceBetweenAmountAndSymbol": "true",
+      "RoundingCoefficient": "0",
+      "DecimalDigits": "2"
+    }
+  ],
+  "Quotes": [
+    {
+      "QuoteId": "1",
+      "MinPrice": "281",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-02-19T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-04-26T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-10T17:37:00"
+    },
+    {
+      "QuoteId": "2",
+      "MinPrice": "131",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-02-21T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-02-23T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-13T09:01:00"
+    },
+    {
+      "QuoteId": "3",
+      "MinPrice": "116",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-02-21T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-03-20T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-08T15:56:00"
+    },
+    {
+      "QuoteId": "4",
+      "MinPrice": "69",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-02-24T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-02-28T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T21:12:00"
+    },
+    {
+      "QuoteId": "5",
+      "MinPrice": "58",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-02-24T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-05-22T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-13T10:07:00"
+    },
+    {
+      "QuoteId": "6",
+      "MinPrice": "51",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-02-28T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-03-13T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-15T09:44:00"
+    },
+    {
+      "QuoteId": "7",
+      "MinPrice": "243",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-03-01T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-08-01T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T10:25:00"
+    },
+    {
+      "QuoteId": "8",
+      "MinPrice": "37",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-03-09T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-03-13T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-15T09:44:00"
+    },
+    {
+      "QuoteId": "9",
+      "MinPrice": "101",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-03-16T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-03-23T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-09T19:17:00"
+    },
+    {
+      "QuoteId": "10",
+      "MinPrice": "225",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-03-16T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-05-15T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T19:44:00"
+    },
+    {
+      "QuoteId": "11",
+      "MinPrice": "37",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-03-30T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-04-03T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-15T10:40:00"
+    },
+    {
+      "QuoteId": "12",
+      "MinPrice": "32",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-04-06T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-04-24T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T19:58:00"
+    },
+    {
+      "QuoteId": "13",
+      "MinPrice": "91",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-04-10T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-04-17T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T13:42:00"
+    },
+    {
+      "QuoteId": "14",
+      "MinPrice": "45",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-04-13T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-05-01T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-15T06:39:00"
+    },
+    {
+      "QuoteId": "15",
+      "MinPrice": "31",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-05-18T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-05-29T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T20:36:00"
+    },
+    {
+      "QuoteId": "16",
+      "MinPrice": "34",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-05-18T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-06-01T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T11:17:00"
+    },
+    {
+      "QuoteId": "17",
+      "MinPrice": "122",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-06-01T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-06-05T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-11T11:04:00"
+    },
+    {
+      "QuoteId": "18",
+      "MinPrice": "37",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-06-01T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-06-12T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-15T11:20:00"
+    },
+    {
+      "QuoteId": "19",
+      "MinPrice": "216",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-06-05T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-07-06T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-09T12:27:00"
+    },
+    {
+      "QuoteId": "20",
+      "MinPrice": "48",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-06-19T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-07-10T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T16:39:00"
+    },
+    {
+      "QuoteId": "21",
+      "MinPrice": "226",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-06-19T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-08-31T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T14:53:00"
+    },
+    {
+      "QuoteId": "22",
+      "MinPrice": "226",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-06-22T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-09-28T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T14:54:00"
+    },
+    {
+      "QuoteId": "23",
+      "MinPrice": "225",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-07-01T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-09-01T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T18:31:00"
+    },
+    {
+      "QuoteId": "24",
+      "MinPrice": "52",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-07-13T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-07-17T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-10T07:14:00"
+    },
+    {
+      "QuoteId": "25",
+      "MinPrice": "111",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-07-13T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-07-24T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-10T07:14:00"
+    },
+    {
+      "QuoteId": "26",
+      "MinPrice": "225",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-07-27T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-08-07T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-09T10:24:00"
+    },
+    {
+      "QuoteId": "27",
+      "MinPrice": "52",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-07-31T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-08-14T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T14:38:00"
+    },
+    {
+      "QuoteId": "28",
+      "MinPrice": "47",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-08-24T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-08-31T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T16:48:00"
+    },
+    {
+      "QuoteId": "29",
+      "MinPrice": "225",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-08-28T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-08-30T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-09T21:14:00"
+    },
+    {
+      "QuoteId": "30",
+      "MinPrice": "226",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-08-28T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2021-01-31T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-13T04:51:00"
+    },
+    {
+      "QuoteId": "31",
+      "MinPrice": "39",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-08-31T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-09-04T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T18:37:00"
+    },
+    {
+      "QuoteId": "32",
+      "MinPrice": "43",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-09-14T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1090 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-09-18T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-14T21:27:00"
+    },
+    {
+      "QuoteId": "33",
+      "MinPrice": "40",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-09-14T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-10-02T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-10T16:14:00"
+    },
+    {
+      "QuoteId": "34",
+      "MinPrice": "35",
+      "Direct": "true",
+      "OutboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-10-09T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1878 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-10-23T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-11T11:03:00"
+    },
+    {
+      "QuoteId": "35",
+      "MinPrice": "226",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-10-11T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-10-18T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-13T20:59:00"
+    },
+    {
+      "QuoteId": "36",
+      "MinPrice": "225",
+      "Direct": "false",
+      "OutboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "56955",
+        "DestinationId": "63867",
+        "DepartureDate": "2020-12-10T00:00:00"
+      },
+      "InboundLeg": {
+        "CarrierIds": [ 1375 ],
+        "OriginId": "63867",
+        "DestinationId": "56955",
+        "DepartureDate": "2020-12-16T00:00:00"
+      },
+      "QuoteDateTime": "2020-02-12T21:23:00"
+    }
+  ],
+  "Places": [
+    {
+      "PlaceId": "56955",
+      "IataCode": "HRK",
+      "Name": "Kharkiv",
+      "Type": "Station",
+      "SkyscannerCode": "HRK",
+      "CityName": "Kharkiv",
+      "CityId": "KHAR",
+      "CountryName": "Ukraine"
+    },
+    {
+      "PlaceId": "63867",
+      "IataCode": "KRK",
+      "Name": "Krakow",
+      "Type": "Station",
+      "SkyscannerCode": "KRK",
+      "CityName": "Krakow",
+      "CityId": "KRAK",
+      "CountryName": "Poland"
+    }
+  ],
+  "Carriers": [
+    {
+      "CarrierId": "1090",
+      "Name": "Ryanair"
+    },
+    {
+      "CarrierId": "1375",
+      "Name": "LOT"
+    },
+    {
+      "CarrierId": "1878",
+      "Name": "Wizz Air"
+    }
+  ]
+}

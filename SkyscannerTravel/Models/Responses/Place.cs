@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace SkyscannerTravel.Models.Responses
+namespace SkyscannerTravel.Models.Responses.Place
 {
-    public class PlaceList
+    public class ListOfPlaces
     {
         public IList<Place> Places { get; set; }
+
+        public ListOfPlaces()
+        {
+            Places = new List<Place>();
+        }
     }
 
     public class Place
