@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SkyscannerTravel.Filters;
 using SkyscannerTravel.Mappers;
 using SkyscannerTravel.Mappers.Interfaces;
 using SkyscannerTravel.Services;
@@ -31,6 +32,7 @@ namespace SkyscannerTravel
             services.AddControllersWithViews();
 
             //services.AddTransient<ISkyscannerService, SkyscannerService>();
+            services.AddScoped<ErrorFilter>();
             services.AddTransient<ISkyscannerService, MockedSkyscannerService>();
 
 

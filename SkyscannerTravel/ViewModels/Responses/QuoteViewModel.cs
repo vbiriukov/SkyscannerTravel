@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace SkyscannerTravel.ViewModels.Responses
 {
-    public class ListOfQuoteViewModels
+    public class ListOfQuotesViewModels
     {
         public CurrencyViewModel Currency { get; set; }
         public IList<QuoteViewModel> Quotes { get; set; }
 
-        public ListOfQuoteViewModels()
+        public ListOfQuotesViewModels()
         {
             Currency = new CurrencyViewModel();
             Quotes = new List<QuoteViewModel>();

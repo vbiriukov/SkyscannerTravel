@@ -3,7 +3,7 @@
 *@
 @using System.Globalization;
 
-@model ListOfQuoteViewModels
+@model ListOfQuotesViewModels
 @{ 
     var numberFormatInfo = new NumberFormatInfo()
     {
@@ -25,25 +25,6 @@
 
         <div class="in-out-bound-block">
             <div class="in-out-bound-block-header">
-                <span class="original">@quote.InboundLeg.OriginPlaceName</span>
-                <i class="fa fa-long-arrow-alt-left"></i>
-                <span class="destination">@quote.InboundLeg.DestinationPlaceName</span>
-            </div>
-
-            @foreach (string name in quote.InboundLeg.CarrierNames)
-            {
-                <div class="quote-row">
-                    <span class="title">Currier:</span><span class="value">@name</span>
-                </div>
-            }
-
-            <div class="quote-row">
-                <span class="title">Departure:</span><span class="value">@quote.InboundLeg.DepartureDate.ToShortDateString()</span>
-            </div>
-        </div>
-
-        <div class="in-out-bound-block">
-            <div class="in-out-bound-block-header">
                 <span class="original">@quote.OutboundLeg.OriginPlaceName</span>
                 <i class="fa fa-long-arrow-alt-right"></i>
                 <span class="destination">@quote.OutboundLeg.DestinationPlaceName</span>
@@ -58,6 +39,25 @@
 
             <div class="quote-row">
                 <span class="title">Departure:</span><span class="value">@quote.OutboundLeg.DepartureDate.ToShortDateString()</span>
+            </div>
+        </div>
+
+        <div class="in-out-bound-block">
+            <div class="in-out-bound-block-header">
+                <span class="original">@quote.InboundLeg.OriginPlaceName</span>
+                <i class="fa fa-long-arrow-alt-left"></i>
+                <span class="destination">@quote.InboundLeg.DestinationPlaceName</span>
+            </div>
+
+            @foreach (string name in quote.InboundLeg.CarrierNames)
+            {
+                <div class="quote-row">
+                    <span class="title">Currier:</span><span class="value">@name</span>
+                </div>
+            }
+
+            <div class="quote-row">
+                <span class="title">Departure:</span><span class="value">@quote.InboundLeg.DepartureDate.ToShortDateString()</span>
             </div>
         </div>
 

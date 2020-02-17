@@ -1,4 +1,6 @@
 ﻿using SkyscannerTravel.Mappers.Interfaces;
+using SkyscannerTravel.Models.Responses.Continents;
+using SkyscannerTravel.Models.Responses.Place;
 using SkyscannerTravel.Models.Responses.Quote;
 using SkyscannerTravel.ViewModels.Responses;
 using System;
@@ -10,7 +12,31 @@ namespace SkyscannerTravel.Mappers
 {
     public class SkyscannerMapper : ISkyscannerMapper
     {
-        public ListOfQuoteViewModels MapQuotesToViewModel(ListOfQuotes listOfQuotes)
+        public ListOfCountriesViewModels MapListOfContinentsToListOfCountiesViewModel(ListOfContinents listOfContinents)
+        {
+            return new ListOfCountriesViewModels()
+            {
+                Countries = listOfContinents.Continents.SelectMany(x => x.Countries).Select(x => new CountyViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList()
+            };
+        }
+
+        public ListOfPlacesViewModels MapListOfPlacesToListOfPlacesViewModel(ListOfPlaces listOfPlaces)
+        {
+            return new ListOfPlacesViewModels()
+            {
+                Places = listOfPlaces.Places.Select(x => new PlaceViewModel()
+                {
+                    PlaceId = x.PlaceId,
+                    PlaceName = x.PlaceName
+                }).ToList()
+            };
+        }
+
+        public ListOfQuotesViewModels MapListOfQuotesToListOfQuotesViewModel(ListOfQuotes listOfQuotes)
         {
             Currency currency = listOfQuotes.Currencies.FirstOrDefault();
 
@@ -57,7 +83,7 @@ namespace SkyscannerTravel.Mappers
                 quoteViewModels.Add(quoteViewModel);
             }
 
-            return new ListOfQuoteViewModels()
+            return new ListOfQuotesViewModels()
             {
                 Currency = currencyViewModel,
                 Quotes = quoteViewModels

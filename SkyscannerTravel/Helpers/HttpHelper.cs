@@ -14,29 +14,22 @@ namespace SkyscannerTravel.Helpers
         private const string HTTP_METHOD_GET = "GET";
         private const string HTTP_ACCEPT_TYPE = "application/json";
 
-        public static async Task<(HttpStatusCode, R)> OnGet<R>(string url)
+        public static async Task<R> Get<R>(string url)
         {
-            try
+            var request = WebRequest.Create(url) as HttpWebRequest;
+
+            request.Method = HTTP_METHOD_GET;
+            request.Accept = HTTP_ACCEPT_TYPE;
+
+            using (var response = await request.GetResponseAsync() as HttpWebResponse)
             {
-                var request = WebRequest.Create(url) as HttpWebRequest;
-
-                request.Method = HTTP_METHOD_GET;
-                request.Accept = HTTP_ACCEPT_TYPE;
-
-                using (var response = await request.GetResponseAsync() as HttpWebResponse)
+                using (Stream stream = response.GetResponseStream())
                 {
-                    using (Stream stream = response.GetResponseStream())
-                    {
-                        var reader = new StreamReader(stream);
-                        string responseString = await reader.ReadToEndAsync();
-                        R result = JsonConvert.DeserializeObject<R>(responseString);
-                        return (response.StatusCode, result);
-                    }
+                    var reader = new StreamReader(stream);
+                    string responseString = await reader.ReadToEndAsync();
+                    R result = JsonConvert.DeserializeObject<R>(responseString);
+                    return result;
                 }
-            }
-            catch (Exception ex)
-            {
-                return (HttpStatusCode.InternalServerError, default(R));
             }
         }
     }

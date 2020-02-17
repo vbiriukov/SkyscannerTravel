@@ -1,17 +1,15 @@
 ﻿using SkyscannerTravel.Models.Responses.Continents;
-using SkyscannerTravel.Models.Responses.Place;
-using SkyscannerTravel.Models.Responses.Quote;
 using SkyscannerTravel.ViewModels.Responses;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace SkyscannerTravel.Services.Interfaces
 {
     public interface ISkyscannerService
     {
-        Task<ListOfPlaces> GetPlaceByIpAddress(string ipAddress, string country = "UK", string currency = "GBP", string locale = "en-GB");
-        Task<ListOfPlaces> SearchPlace(string query, string country = "UK", string currency = "GBP", string locale = "en-GB");
+        Task<ListOfPlacesViewModels> GetPlaceByIpAddress(string ipAddress, string country = "UK", string currency = "GBP", string locale = "en-GB");
         Task<ListOfContinents> GetFullListOfContinents(string languageId = "en-gb");
-        Task<ListOfQuoteViewModels> GetBrowseQuotes(string originPlace, string destinationPlace, string country = "UK", string currency = "GBP", string locale = "en-GB", string outboundPartialDate = "anytime", string inboundPartialDate = "");
+        Task<ListOfCountriesViewModels> GetListOfCountries(string languageId = "en-gb");
+        Task<ListOfQuotesViewModels> GetBrowseQuotes(string originPlace, string destinationPlace, string country = "UK", string currency = "GBP", string locale = "en-GB", string outboundPartialDate = "anytime", string inboundPartialDate = "");
+
     }
 }

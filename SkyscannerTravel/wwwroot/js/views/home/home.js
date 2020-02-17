@@ -1,8 +1,4 @@
-﻿$(() => {
-    //getNearestCities();
-});
-
-$("#btnSearch").click((e) => {
+﻿$("#btnSearch").click((e) => {
     let selectedOriginalPlace = $("#selectOriginalPlace").val();
     let selectedDestinationPlace = $("#selectDestinationCity").val();
 
@@ -28,9 +24,7 @@ $('#selectDestinationCountry').on('select2:select', function (e) {
     });
 });
 
-
 $('#selectDestinationCity').on('select2:select', function (e) {
-    let selectedCountry = $("#selectDestinationCountry").val();
     let selectedCity = $(this).val();
     if (selectedCity) {
         $("#btnSearch").prop("disabled", false);
@@ -49,24 +43,6 @@ function SetNewOptionsFor(select, options) {
     });
 
     $(select).html(newOptions).trigger('change');
-}
-
-function getNearestCities() {
-    let selectOriginalPlace = $("#selectOriginalPlace").children();
-
-    if (selectOriginalPlace.length > 0) {
-        let lat = sessionStorage.getItem(latitudeKey);
-        let long = sessionStorage.getItem(longitudeKey);
-        if (!lat && !long) {
-            return;
-        }
-
-        getResponse(`/Cities/Nearest?latitude=${lat}&longitude=${long}`, "json").done((response) => {
-            SetNewOptionsFor('#selectOriginalPlace', response);
-        }).fail((jqXHR, textStatus) => {
-            console.log(textStatus);
-        });
-    }
 }
 
 $("#selectDestinationCity").select2();

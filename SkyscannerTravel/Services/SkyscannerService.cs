@@ -1,15 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SkyscannerTravel.Helpers;
 using SkyscannerTravel.Mappers.Interfaces;
-using SkyscannerTravel.Models.Responses;
 using SkyscannerTravel.Models.Responses.Continents;
 using SkyscannerTravel.Models.Responses.Place;
 using SkyscannerTravel.Models.Responses.Quote;
 using SkyscannerTravel.Services.Interfaces;
 using SkyscannerTravel.ViewModels.Responses;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace SkyscannerTravel.Services
@@ -27,23 +23,26 @@ namespace SkyscannerTravel.Services
             _skyscannerMapper = skyscannerMapper;
         }
 
-        public async Task<ListOfPlaces> GetPlaceByIpAddress(
+        public virtual async Task<ListOfPlacesViewModels> GetPlaceByIpAddress(
             string ipAddress,
             string country = "UK",
             string currency = "GBP",
             string locale = "en-GB")
         {
-            var result = await HttpHelper.OnGet<ListOfPlaces>($"{_apiEndpoint}autosuggest/v1.0/{country}/{currency}/{locale}?id ={ipAddress}-ip&apiKey={_apiKey}");
-            return result.Item2;
+            ListOfPlaces result = await HttpHelper.Get<ListOfPlaces>($"{_apiEndpoint}autosuggest/v1.0/{country}/{currency}/{locale}?id={ipAddress}-ip&apiKey={_apiKey}");
+
+            ListOfPlacesViewModels listOfPlaceViewModels = _skyscannerMapper.MapListOfPlacesToListOfPlacesViewModel(result);
+            return listOfPlaceViewModels;
         }
 
-        public async Task<ListOfContinents> GetFullListOfContinents(string languageId = "en-gb")
+        public virtual async Task<ListOfContinents> GetFullListOfContinents(string languageId = "en-gb")
         {
-            var result = await HttpHelper.OnGet<ListOfContinents>($"{_apiEndpoint}geo/v1.0?languageid={languageId}&apiKey={_apiKey}");
-            return result.Item2;
+            ListOfContinents result = await HttpHelper.Get<ListOfContinents>($"{_apiEndpoint}geo/v1.0?languageid={languageId}&apiKey={_apiKey}");
+            
+            return result;
         }
 
-        public async Task<ListOfQuoteViewModels> GetBrowseQuotes(
+        public virtual async Task<ListOfQuotesViewModels> GetBrowseQuotes(
             string originPlace,
             string destinationPlace,
             string country = "UK",
@@ -52,14 +51,14 @@ namespace SkyscannerTravel.Services
             string outboundPartialDate = "anytime",
             string inboundPartialDate = "")
         {
-            (HttpStatusCode ResponseCode, ListOfQuotes ListOfQuotes) result = await HttpHelper.OnGet<ListOfQuotes>($"{_apiEndpoint}browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}?apiKey={_apiKey}");
-            
-            ListOfQuoteViewModels listOfQuoteViewModels = _skyscannerMapper.MapQuotesToViewModel(result.ListOfQuotes);
-            
+            ListOfQuotes result = await HttpHelper.Get<ListOfQuotes>($"{_apiEndpoint}browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}?apiKey={_apiKey}");
+
+            ListOfQuotesViewModels listOfQuoteViewModels = _skyscannerMapper.MapListOfQuotesToListOfQuotesViewModel(result);
+
             return listOfQuoteViewModels;
         }
 
-        public Task<ListOfPlaces> SearchPlace(string query, string country = "UK", string currency = "GBP", string locale = "en-GB")
+        public virtual async Task<ListOfCountriesViewModels> GetListOfCountries(string languageId = "en-gb")
         {
             throw new System.NotImplementedException();
         }

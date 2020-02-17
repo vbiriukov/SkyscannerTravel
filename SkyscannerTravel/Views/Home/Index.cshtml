@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model (ListOfContinents listOfContinents, ListOfQuoteViewModels ListOfQuoteViewModels, ListOfPlaces listOfPlaces)
+@model (ListOfCountriesViewModels listOfCountries, ListOfPlacesViewModels listOfPlaces)
 
 <div id="homePage">
     <div class="search-pannel-container">
@@ -28,9 +28,7 @@
                 <div claas="select-container">
                     <p class="select-title">Select country:</p>
                     @{
-                        var listOfCounties = new SelectList(Model.listOfContinents.Continents
-                            .SelectMany(x => x.Countries)
-                            .Select(x => x.Name));
+                        var listOfCounties = new SelectList(Model.listOfCountries.Countries.Select(x => x.Name));
                     }
                     <select id="selectDestinationCountry" class="select-style" asp-items="listOfCounties">
                     </select>
