@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using System.Globalization;
+
+@model ListOfQuoteViewModels
+@{ 
+    var numberFormatInfo = new NumberFormatInfo()
+    {
+        CurrencyDecimalDigits = Model.Currency.DecimalDigits,
+        CurrencyDecimalSeparator = Model.Currency.DecimalSeparator,
+        CurrencySymbol = string.Empty,
+    };
+}
+
+@foreach (var quote in Model.Quotes)
+{
+    <div class="card quote-item">
+        @{
+            string typeOfDirect = quote.Direct ? "direct flight" : "connecting flights";
+        }
+        <div class="quote-row">
+            <span class="title">Direct:</span><span class="value">@typeOfDirect</span>
+        </div>
+
+        <div class="in-out-bound-block">
+            <div class="in-out-bound-block-header">
+                <span class="original">@quote.InboundLeg.OriginPlaceName</span>
+                <i class="fa fa-long-arrow-alt-left"></i>
+                <span class="destination">@quote.InboundLeg.DestinationPlaceName</span>
+            </div>
+
+            @foreach (string name in quote.InboundLeg.CarrierNames)
+            {
+                <div class="quote-row">
+                    <span class="title">Currier:</span><span class="value">@name</span>
+                </div>
+            }
+
+            <div class="quote-row">
+                <span class="title">Departure:</span><span class="value">@quote.InboundLeg.DepartureDate.ToShortDateString()</span>
+            </div>
+        </div>
+
+        <div class="in-out-bound-block">
+            <div class="in-out-bound-block-header">
+                <span class="original">@quote.OutboundLeg.OriginPlaceName</span>
+                <i class="fa fa-long-arrow-alt-right"></i>
+                <span class="destination">@quote.OutboundLeg.DestinationPlaceName</span>
+            </div>
+
+            @foreach (string name in quote.OutboundLeg.CarrierNames)
+            {
+                <div class="quote-row">
+                    <span class="title">Currier:</span><span class="value">@name</span>
+                </div>
+            }
+
+            <div class="quote-row">
+                <span class="title">Departure:</span><span class="value">@quote.OutboundLeg.DepartureDate.ToShortDateString()</span>
+            </div>
+        </div>
+
+        <div class="min-price"><p><span class="min-price-title">Min price</span>:<span class="min-price-value">@quote.MinPrice.ToString("c",numberFormatInfo)</span><span class="min-price-currency">@Model.Currency.Code</span></p></div>
+
+    </div>
+}

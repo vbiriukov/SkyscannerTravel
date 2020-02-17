@@ -2,7 +2,52 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model (ListOfContinents listOfContinents, ListOfQuoteViewModels ListOfQuoteViewModels, ListOfPlaces listOfPlaces)
+
+<div id="homePage">
+    <div class="search-pannel-container">
+        <div id="searchPanel" class="search-pannel d-block d-sm-block d-md-flex d-lg-flex d-xl-flex">
+            <div class="place-container col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h3>Select original place:</h3>
+                <div claas="select-container">
+                    <p class="select-title">Select country <strong>(default)</strong>:</p>
+                    @{
+                        var listOfPlaces = Model.listOfPlaces.Places
+                            .Select(x => new SelectListItem()
+                            {
+                                Text = x.PlaceName,
+                                Value = x.PlaceId
+                            });
+                    }
+                    <select id="selectOriginalPlace" asp-items="listOfPlaces" class="select-style">
+                    </select>
+                </div>
+            </div>
+            <div class="place-container  col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h3>Select destination place:</h3>
+                <div claas="select-container">
+                    <p class="select-title">Select country:</p>
+                    @{
+                        var listOfCounties = new SelectList(Model.listOfContinents.Continents
+                            .SelectMany(x => x.Countries)
+                            .Select(x => x.Name));
+                    }
+                    <select id="selectDestinationCountry" class="select-style" asp-items="listOfCounties">
+                    </select>
+                </div>
+                <div claas="select-container">
+                    <p class="select-title">Select city:</p>
+                    <select id="selectDestinationCity" class="select-style">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="btn-search-container">
+            <button id="btnSearch" type="button" class="btn btn-primary btn-lgbtn-search" disabled>Search</button>
+        </div>
+    </div>
+    <div class="list-of-quotes-container">
+    </div>
 </div>
+
+<script type="text/javascript" src="~/js/views/home/home.js"></script>

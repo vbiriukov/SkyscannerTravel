@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/css/lib.min.css",
+    "inputFiles": [
+      "wwwroot/lib/select2/css/select2.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/lib.min.js",
+    "inputFiles": [
+      "wwwroot/lib/select2/js/select2.min.js"
+    ]
+  }
+]

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SkyscannerTravel.Mappers;
+using SkyscannerTravel.Mappers.Interfaces;
 using SkyscannerTravel.Services;
 using SkyscannerTravel.Services.Interfaces;
 using SkyscannerTravel.Services.MoñkedServices;
@@ -28,8 +30,11 @@ namespace SkyscannerTravel
         {
             services.AddControllersWithViews();
 
-            //services.AddScoped<ISkyscannerService, SkyscannerService>();
-            services.AddScoped<ISkyscannerService, MockedSkyscannerService>();
+            //services.AddTransient<ISkyscannerService, SkyscannerService>();
+            services.AddTransient<ISkyscannerService, MockedSkyscannerService>();
+
+
+            services.AddTransient<ISkyscannerMapper, SkyscannerMapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

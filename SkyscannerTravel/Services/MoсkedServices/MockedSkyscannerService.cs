@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using SkyscannerTravel.Helpers;
+using SkyscannerTravel.Mappers.Interfaces;
 using SkyscannerTravel.Models.Responses;
 using SkyscannerTravel.Models.Responses.Continents;
 using SkyscannerTravel.Models.Responses.Place;
 using SkyscannerTravel.Models.Responses.Quote;
 using SkyscannerTravel.Services.Interfaces;
+using SkyscannerTravel.ViewModels.Responses;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,12 +21,14 @@ namespace SkyscannerTravel.Services.MoсkedServices
     {
         private readonly string _apiEndpoint;
         private readonly string _apiKey;
+        private readonly ISkyscannerMapper _skyscannerMapper;
 
-        public MockedSkyscannerService(IConfiguration configuration)
+        public MockedSkyscannerService(IConfiguration configuration, ISkyscannerMapper skyscannerMapper)
         {
             _apiEndpoint = configuration["Skyscanner:ApiEndpoint"];
             _apiKey = configuration["Skyscanner:ApiKey"];
 
+            _skyscannerMapper = skyscannerMapper;
         }
 
         public async Task<ListOfPlaces> GetPlaceByIpAddress(
@@ -45,7 +49,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
             return await FileHelper.GetData<ListOfContinents>(path);
         }
 
-        public async Task<ListOfQuotes> GetBrowseQuotes(
+        public async Task<ListOfQuoteViewModels> GetBrowseQuotes(
             string originPlace,
             string destinationPlace,
             string country = "UK",
@@ -57,7 +61,11 @@ namespace SkyscannerTravel.Services.MoсkedServices
             //var path = Path.Combine("Files", "get_list_of_places.json");
             var path = Path.Combine("Files", "get_browse_quotes_kh_kr.json");
 
-            return await FileHelper.GetData<ListOfQuotes>(path);
+            var result = await FileHelper.GetData<ListOfQuotes>(path);
+
+            var quoteViewModels = _skyscannerMapper.MapQuotesToViewModel(result);
+
+            return quoteViewModels;
         }
 
         public async Task<ListOfPlaces> SearchPlace(string query, string country = "UK", string currency = "GBP", string locale = "en-GB")
