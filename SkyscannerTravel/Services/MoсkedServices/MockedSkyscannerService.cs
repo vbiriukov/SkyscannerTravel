@@ -26,7 +26,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
             string currency = "GBP",
             string locale = "en-GB")
         {
-            var path = Path.Combine("Files", "get_list_of_places.json");
+            var path = Path.Combine("Files", "get_place_80_73_11_139.json");
 
             var result = await FileHelper.GetData<ListOfPlaces>(path);
 
