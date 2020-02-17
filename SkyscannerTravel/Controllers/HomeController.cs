@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
+using SkyscannerTravel.Extensions;
 using SkyscannerTravel.Filters;
 using SkyscannerTravel.Models.Responses.Continents;
 using SkyscannerTravel.Services.Interfaces;
@@ -15,29 +16,16 @@ namespace SkyscannerTravel.Controllers
     [ServiceFilter(typeof(ErrorFilter))]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ISkyscannerService _skyscannerService;
 
-        public HomeController(ILogger<HomeController> logger, ISkyscannerService skyscannerService)
+        public HomeController(ISkyscannerService skyscannerService)
         {
-            _logger = logger;
             _skyscannerService = skyscannerService;
         }
 
-        [HttpGet("{ip?}")]
-        public async Task<IActionResult> Index(string ip)
+        public async Task<IActionResult> Index()
         {
-            if (!IPAddress.TryParse(ip, out IPAddress remoteIpAddress))
-            {
-                remoteIpAddress = HttpContext.Connection.RemoteIpAddress;
-            }
-
-            if (remoteIpAddress.IsIPv4MappedToIPv6)
-            {
-                remoteIpAddress = remoteIpAddress.MapToIPv4();
-            }
-
-            string clientIpAddress = remoteIpAddress?.ToString();
+            string clientIpAddress = HttpContext.GetIpAddress();
 
             ListOfPlacesViewModels listOfPlaces = await _skyscannerService.GetPlaceByIpAddress(clientIpAddress);
             ListOfCountriesViewModels listOfCountries = await _skyscannerService.GetListOfCountries();
@@ -49,17 +37,8 @@ namespace SkyscannerTravel.Controllers
         [HttpGet("/Cities/{country}")]
         public async Task<IActionResult> GetCities(string country)
         {
-            ListOfContinents listOfCointinents = await _skyscannerService.GetFullListOfContinents();
-            var listOfCities = listOfCointinents.Continents
-                .SelectMany(x => x.Countries)
-                .Where(x => x.Name.Equals(country))
-                .SelectMany(x => x.Cities)
-                .OrderBy(x => x.Name)
-                .Select(x => new SelectListItem() { 
-                    Text = x.Name,
-                    Value = x.Id
-                });
-
+            ListOfCitiesViewModel listOfCities = await _skyscannerService.GetListOfCities(country);
+     
             return Ok(listOfCities);
         }
 

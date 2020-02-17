@@ -14,7 +14,7 @@ $('#selectDestinationCountry').on('select2:select', function (e) {
     $("#btnSearch").prop("disabled", true);
 
     getResponse(`/Cities/${selectedCountry}`, "json").done((response) => {
-        SetNewOptionsFor('#selectDestinationCity', response);
+        SetNewOptionsFor('#selectDestinationCity', response.cities);
         let selectedCity = $("#selectDestinationCity").val();
         if (selectedCity) {
             $("#btnSearch").prop("disabled", false);
@@ -39,7 +39,7 @@ function RemoveOptionsFor(select) {
 function SetNewOptionsFor(select, options) {
     let newOptions = []
     Array.from(options).forEach((value) => {
-        newOptions.push(new Option(value.text, value.value, false, false));
+        newOptions.push(new Option(value.name, value.id, false, false));
     });
 
     $(select).html(newOptions).trigger('change');

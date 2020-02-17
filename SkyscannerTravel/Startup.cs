@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +11,11 @@ using Microsoft.Extensions.Hosting;
 using SkyscannerTravel.Filters;
 using SkyscannerTravel.Mappers;
 using SkyscannerTravel.Mappers.Interfaces;
+using SkyscannerTravel.Providers;
+using SkyscannerTravel.Providers.Interfaces;
 using SkyscannerTravel.Services;
+using SkyscannerTravel.Services.MoсkedServices;
 using SkyscannerTravel.Services.Interfaces;
-using SkyscannerTravel.Services.Mo�kedServices;
 
 namespace SkyscannerTravel
 {
@@ -34,6 +36,7 @@ namespace SkyscannerTravel
             //services.AddTransient<ISkyscannerService, SkyscannerService>();
             services.AddScoped<ErrorFilter>();
             services.AddTransient<ISkyscannerService, MockedSkyscannerService>();
+            services.AddTransient<ISkyscannerProvider, SkyScannerProvider>();
 
 
             services.AddTransient<ISkyscannerMapper, SkyscannerMapper>();

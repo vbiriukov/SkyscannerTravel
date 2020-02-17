@@ -12,6 +12,18 @@ namespace SkyscannerTravel.Mappers
 {
     public class SkyscannerMapper : ISkyscannerMapper
     {
+        public ListOfCitiesViewModel MapListOfCitiesToListOfCitiesViewModel(List<City> listOfCities)
+        {
+            return new ListOfCitiesViewModel()
+            {
+                Cities = listOfCities.Select(x => new CityViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList()
+            };
+        }
+
         public ListOfCountriesViewModels MapListOfContinentsToListOfCountiesViewModel(ListOfContinents listOfContinents)
         {
             return new ListOfCountriesViewModels()

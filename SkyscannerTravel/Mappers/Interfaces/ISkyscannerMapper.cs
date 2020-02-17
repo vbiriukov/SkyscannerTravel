@@ -14,5 +14,6 @@ namespace SkyscannerTravel.Mappers.Interfaces
         ListOfQuotesViewModels MapListOfQuotesToListOfQuotesViewModel(ListOfQuotes listOfQuotes);
         ListOfPlacesViewModels MapListOfPlacesToListOfPlacesViewModel(ListOfPlaces listOfPlaces);
         ListOfCountriesViewModels MapListOfContinentsToListOfCountiesViewModel(ListOfContinents listOfContinents);
+        ListOfCitiesViewModel MapListOfCitiesToListOfCitiesViewModel(List<City> listOfCities);
     }
 }

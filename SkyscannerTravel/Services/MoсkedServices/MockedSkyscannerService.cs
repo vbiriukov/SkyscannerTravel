@@ -4,23 +4,26 @@ using SkyscannerTravel.Mappers.Interfaces;
 using SkyscannerTravel.Models.Responses.Continents;
 using SkyscannerTravel.Models.Responses.Place;
 using SkyscannerTravel.Models.Responses.Quote;
+using SkyscannerTravel.Services.Base;
 using SkyscannerTravel.Services.Interfaces;
 using SkyscannerTravel.ViewModels.Responses;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkyscannerTravel.Services.MoсkedServices
 {
-    public class MockedSkyscannerService : ISkyscannerService
+    public class MockedSkyscannerService : BaseSkyscannerService
     {
         private readonly ISkyscannerMapper _skyscannerMapper;
 
-        public MockedSkyscannerService(IConfiguration configuration, ISkyscannerMapper skyscannerMapper)
+        public MockedSkyscannerService(ISkyscannerMapper skyscannerMapper) : base(skyscannerMapper)
         {
             _skyscannerMapper = skyscannerMapper;
         }
 
-        public async Task<ListOfPlacesViewModels> GetPlaceByIpAddress(
+        public override async Task<ListOfPlacesViewModels> GetPlaceByIpAddress(
             string ipAddress,
             string country = "UK",
             string currency = "GBP",
@@ -35,14 +38,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
             return listOfPlaceViewModels;
         }
 
-        public async Task<ListOfContinents> GetFullListOfContinents(string languageId = "en-gb")
-        {
-            var path = Path.Combine("Files", "get_list_of_continents.json");
-
-            return await FileHelper.GetData<ListOfContinents>(path);
-        }
-
-        public async Task<ListOfQuotesViewModels> GetBrowseQuotes(
+        public override async Task<ListOfQuotesViewModels> GetBrowseQuotes(
             string originPlace,
             string destinationPlace,
             string country = "UK",
@@ -58,17 +54,6 @@ namespace SkyscannerTravel.Services.MoсkedServices
             ListOfQuotesViewModels quoteViewModels = _skyscannerMapper.MapListOfQuotesToListOfQuotesViewModel(result);
 
             return quoteViewModels;
-        }
-
-        public async Task<ListOfCountriesViewModels> GetListOfCountries(string languageId = "en-gb")
-        {
-            var path = Path.Combine("Files", "get_list_of_continents.json");
-
-            ListOfContinents listOfCotinents =  await FileHelper.GetData<ListOfContinents>(path);
-
-            ListOfCountriesViewModels listOfCountries = _skyscannerMapper.MapListOfContinentsToListOfCountiesViewModel(listOfCotinents);
-
-            return listOfCountries;
         }
     }
 }

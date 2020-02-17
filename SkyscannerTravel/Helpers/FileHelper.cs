@@ -12,15 +12,26 @@ namespace SkyscannerTravel.Helpers
             R response = new R();
             if (File.Exists(path))
             {
-                using (FileStream fs = new FileStream(path, FileMode.Open))
+                using (FileStream fileStream = new FileStream(path, FileMode.Open))
                 {
-                    var reader = new StreamReader(fs, Encoding.UTF8);
+                    var reader = new StreamReader(fileStream, Encoding.UTF8);
                     string jsonString = await reader.ReadToEndAsync();
                     response = JsonConvert.DeserializeObject<R>(jsonString);
                 }
             }
 
             return response;
+        }
+
+        public static async Task SaveData(string path, object model)
+        {
+            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+            using (var reader = new StreamWriter(fileStream, Encoding.UTF8))
+            {
+                string data = JsonConvert.SerializeObject(model);
+                await reader.WriteLineAsync(data);
+
+            }
         }
     }
 }
