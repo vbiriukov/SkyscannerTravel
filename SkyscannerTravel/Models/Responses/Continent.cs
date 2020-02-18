@@ -32,12 +32,12 @@ namespace SkyscannerTravel.Models.Responses.Continents
 
     public class City
     {
+        public string Id { get; set; }
         public bool SingleAirportCity { get; set; }
         public IList<Airport> Airports { get; set; }
         public string CountryId { get; set; }
         public string Location { get; set; }
         public string IataCode { get; set; }
-        public string Id { get; set; }
         public string Name { get; set; }
 
         public City()
@@ -48,17 +48,17 @@ namespace SkyscannerTravel.Models.Responses.Continents
 
     public class Region
     {
-        public string CountryId { get; set; }
         public string Id { get; set; }
+        public string CountryId { get; set; }
         public string Name { get; set; }
     }
 
     public class Airport
     {
+        public string Id { get; set; }
         public string CityId { get; set; }
         public string CountryId { get; set; }
         public string Location { get; set; }
-        public string Id { get; set; }
         public string Name { get; set; }
     }
 }

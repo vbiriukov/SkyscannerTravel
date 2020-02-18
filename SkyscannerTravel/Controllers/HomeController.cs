@@ -1,24 +1,19 @@
-﻿using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
+using SkyscannerTravel.Controllers.Base;
 using SkyscannerTravel.Extensions;
-using SkyscannerTravel.Filters;
-using SkyscannerTravel.Models.Responses.Continents;
 using SkyscannerTravel.Services.Interfaces;
 using SkyscannerTravel.ViewModels.Responses;
 
 namespace SkyscannerTravel.Controllers
 {
-    [ServiceFilter(typeof(ErrorFilter))]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ISkyscannerService _skyscannerService;
 
-        public HomeController(ISkyscannerService skyscannerService)
+        public HomeController(ISkyscannerService skyscannerService, ILoggerFactory loggerFactory) : base(loggerFactory)
         {
             _skyscannerService = skyscannerService;
         }
@@ -27,8 +22,8 @@ namespace SkyscannerTravel.Controllers
         {
             string clientIpAddress = HttpContext.GetIpAddress();
 
-            ListOfPlacesViewModels listOfPlaces = await _skyscannerService.GetPlaceByIpAddress(clientIpAddress);
-            ListOfCountriesViewModels listOfCountries = await _skyscannerService.GetListOfCountries();
+            ListOfPlacesViewModels listOfPlaces = await Execute(() => _skyscannerService.Location.GetPlaceByIpAddress(clientIpAddress));
+            ListOfCountriesViewModels listOfCountries = await Execute(() => _skyscannerService.Location.GetListOfCountries());
 
 
             return View((listOfCountries, listOfPlaces));
@@ -37,15 +32,15 @@ namespace SkyscannerTravel.Controllers
         [HttpGet("/Cities/{country}")]
         public async Task<IActionResult> GetCities(string country)
         {
-            ListOfCitiesViewModel listOfCities = await _skyscannerService.GetListOfCities(country);
-     
+            ListOfCitiesViewModel listOfCities = await Execute(() => _skyscannerService.Location.GetListOfCities(country));
+
             return Ok(listOfCities);
         }
 
         [HttpGet("/BrowseQuotes")]
         public async Task<IActionResult> GetBrowseQuotes(string orininalPlace, string destinationPlace)
         {
-            ListOfQuotesViewModels listOfQuoteViewModels = await _skyscannerService.GetBrowseQuotes(orininalPlace,destinationPlace);
+            ListOfQuotesViewModels listOfQuoteViewModels = await Execute(() => _skyscannerService.Flight.GetBrowseQuotes(orininalPlace, destinationPlace));
 
             return new PartialViewResult
             {

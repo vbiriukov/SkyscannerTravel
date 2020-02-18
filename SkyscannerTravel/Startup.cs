@@ -28,21 +28,13 @@ namespace SkyscannerTravel
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
-            //services.AddTransient<ISkyscannerService, SkyscannerService>();
-            services.AddScoped<ErrorFilter>();
-            services.AddTransient<ISkyscannerService, MockedSkyscannerService>();
-            services.AddTransient<ISkyscannerProvider, SkyScannerProvider>();
-
-
-            services.AddTransient<ISkyscannerMapper, SkyscannerMapper>();
+            InjectServices(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -52,7 +44,6 @@ namespace SkyscannerTravel
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -67,6 +58,29 @@ namespace SkyscannerTravel
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+
+        private void InjectServices(IServiceCollection services)
+        {
+            services.AddScoped<ErrorFilter>();
+            services.AddTransient<ISkyscannerProvider, SkyScannerProvider>();
+
+            services.AddTransient<ISkyscannerService, SkyscannerService>();
+            services.AddTransient<ISkyscannerMapper, SkyscannerMapper>();
+
+            bool isMocked = Configuration.GetValue<bool>("IsMocked");
+
+            if (isMocked)
+            {
+                services.AddTransient<ILocationService, MockedLocationService>();
+                services.AddTransient<IFlightService, MockedFlightService>();
+            }
+            if (!isMocked)
+            {
+                services.AddTransient<ILocationService, LocationService>();
+                services.AddTransient<IFlightService, FlightService>();
+            }
         }
     }
 }

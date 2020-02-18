@@ -6,6 +6,7 @@
         $(".list-of-quotes-container").html(response);
     }).fail((jqXHR, textStatus) => {
         console.log(textStatus);
+        $("#errorModal").modal("show");
     });
 });
 
@@ -21,6 +22,7 @@ $('#selectDestinationCountry').on('select2:select', function (e) {
         }
     }).fail((jqXHR, textStatus) => {
         console.log(textStatus);
+        $("#errorModal").modal("show");
     });
 });
 
