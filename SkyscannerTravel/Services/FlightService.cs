@@ -17,7 +17,7 @@ namespace SkyscannerTravel.Services
 
         public FlightService(ISkyscannerProvider skyscannerProvider, ISkyscannerMapper skycannerMapper)
         {
-            this._skyscannerProvider = skyscannerProvider;
+            _skyscannerProvider = skyscannerProvider;
             _skycannerMapper = skycannerMapper;
         }
 

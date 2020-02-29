@@ -8,7 +8,10 @@ namespace SkyscannerTravel.Helpers
 {
     public class FileHelper
     {
-        public static async Task<R> GetData<R>(string folderName, string fileName) where R : new()
+        private static object _lockerRead = new object();
+        private static object _lockerWrite = new object();
+
+        private static R GetData<R>(string folderName, string fileName) where R : new()
         {
             R response = new R();
 
@@ -16,49 +19,64 @@ namespace SkyscannerTravel.Helpers
 
             if (File.Exists(path))
             {
-                using (FileStream fileStream = new FileStream(path, FileMode.Open))
+                lock (_lockerRead)
                 {
-                    var reader = new StreamReader(fileStream, Encoding.UTF8);
-                    string jsonString = await reader.ReadToEndAsync();
-                    response = JsonConvert.DeserializeObject<R>(jsonString);
+                    using (FileStream fileStream = new FileStream(path, FileMode.Open))
+                    {
+                        var reader = new StreamReader(fileStream, Encoding.UTF8);
+                        string jsonString = reader.ReadToEnd();
+                        response = JsonConvert.DeserializeObject<R>(jsonString);
 
-                    reader.Close();
-                    fileStream.Close();
+                        reader.Close();
+                        fileStream.Close();
+                    }
                 }
             }
 
             return response;
         }
 
-        public static async Task SaveData(string folderName, string fileName, object model)
+        public static async Task<R> GetDataAsync<R>(string folderName, string fileName) where R : new()
         {
+            return await Task.Run(() => GetData<R>(folderName, fileName));
+        }
 
+        private static void SaveData(string folderName, string fileName, object model)
+        {
             string path = Path.Combine(folderName, fileName);
 
-            using (FileStream fileStream = new FileStream(path, FileMode.Create))
-            using (var reader = new StreamWriter(fileStream, Encoding.UTF8))
+            lock (_lockerWrite)
             {
-                string data = JsonConvert.SerializeObject(model);
-                await reader.WriteLineAsync(data);
+                using (FileStream fileStream = new FileStream(path, FileMode.Create))
+                using (var reader = new StreamWriter(fileStream, Encoding.UTF8))
+                {
+                    string data = JsonConvert.SerializeObject(model);
+                    reader.WriteLine(data);
 
-                reader.Close();
-                fileStream.Close();
+                    reader.Close();
+                    fileStream.Close();
+                }
             }
         }
 
 
-        public static bool IsFileModifiedMoreThanDays(string file, int days)
+        public static Task SaveDataAsync(string folderName, string fileName, object model)
         {
-            days = days > 0 ? -days : days;
-            DateTime dateTime = DateTime.Now.AddDays(days);
-
-            if (!File.Exists(file))
-            {
-                return false;
-            }
-
-            DateTime lastWriteTime = File.GetLastWriteTime(file);
-            return lastWriteTime > dateTime;
+            return Task.Run(() => SaveData(folderName, fileName, model));
         }
+
+        //public static bool IsFileModifiedMoreThanDays(string file, int days)
+        //{
+        //    days = days > 0 ? -days : days;
+        //    DateTime dateTime = DateTime.Now.AddDays(days);
+
+        //    if (!File.Exists(file))
+        //    {
+        //        return false;
+        //    }
+
+        //    DateTime lastWriteTime = File.GetLastWriteTime(file);
+        //    return lastWriteTime > dateTime;
+        //}
     }
 }

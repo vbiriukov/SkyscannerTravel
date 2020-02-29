@@ -23,7 +23,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
 
         public async Task<ListOfCountriesViewModels> GetListOfCountries(string languageId = "en-gb")
         {
-            ListOfContinents listOfCotinents = await FileHelper.GetData<ListOfContinents>(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS);
+            ListOfContinents listOfCotinents = await FileHelper.GetDataAsync<ListOfContinents>(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS);
 
             ListOfCountriesViewModels listOfCountriesViewModel = _skyscannerMapper.MapListOfContinentsToListOfCountiesViewModel(listOfCotinents);
 
@@ -32,7 +32,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
 
         public async Task<ListOfCitiesViewModel> GetListOfCities(string country, string languageId = "en-gb")
         {
-            ListOfContinents listOfCotinents = await FileHelper.GetData<ListOfContinents>(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS);
+            ListOfContinents listOfCotinents = await FileHelper.GetDataAsync<ListOfContinents>(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS);
 
             List<City> cities = listOfCotinents.Continents.SelectMany(x => x.Countries).Where(x => x.Name.Equals(country)).SelectMany(x => x.Cities).ToList();
 
@@ -46,7 +46,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
             string currency = "GBP",
             string locale = "en-GB")
         {
-            ListOfPlaces listOfPlaces = await FileHelper.GetData<ListOfPlaces>(FileName.PARENT_FOLDER, FileName.PLACE_IP_80_73_11_139);
+            ListOfPlaces listOfPlaces = await FileHelper.GetDataAsync<ListOfPlaces>(FileName.PARENT_FOLDER, FileName.PLACE_IP_80_73_11_139);
 
             ListOfPlacesViewModels listOfPlaceViewModels = _skyscannerMapper.MapListOfPlacesToListOfPlacesViewModel(listOfPlaces);
 

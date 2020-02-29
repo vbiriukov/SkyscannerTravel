@@ -27,7 +27,7 @@ namespace SkyscannerTravel.Services.MoсkedServices
             string outboundPartialDate = "anytime",
             string inboundPartialDate = "")
         {
-            var result = await FileHelper.GetData<ListOfQuotes>(FileName.PARENT_FOLDER, FileName.BROWSE_QUOTES_KH_KR);
+            var result = await FileHelper.GetDataAsync<ListOfQuotes>(FileName.PARENT_FOLDER, FileName.BROWSE_QUOTES_KH_KR);
 
             ListOfQuotesViewModels quoteViewModels = _skyscannerMapper.MapListOfQuotesToListOfQuotesViewModel(result);
 

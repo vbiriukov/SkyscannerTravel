@@ -18,13 +18,11 @@ namespace SkyscannerTravel.Services
     {
         private readonly ISkyscannerProvider _skyscannerProvider;
         private readonly ISkyscannerMapper _skyscannerMapper;
-        private readonly int _frequencyUpdateByDay;
 
         public LocationService(ISkyscannerProvider skyscannerProvider, ISkyscannerMapper skyscannerMapper, IConfiguration configuration)
         {
             _skyscannerProvider = skyscannerProvider;
             _skyscannerMapper = skyscannerMapper;
-            _frequencyUpdateByDay = configuration.GetValue<int>("FrequencyUpdateByDay");
         }
 
         public async Task<ListOfCountriesViewModels> GetListOfCountries(string languageId = "en-gb")
@@ -61,14 +59,7 @@ namespace SkyscannerTravel.Services
 
         private async Task<ListOfContinents> GetFullListOfContinents(string languageId)
         {
-            if (FileHelper.IsFileModifiedMoreThanDays(Path.Combine(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS), _frequencyUpdateByDay))
-            {
-                return await FileHelper.GetData<ListOfContinents>(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS);
-            }
-
             ListOfContinents listOfContinents = await _skyscannerProvider.GetFullListOfContinents(languageId);
-
-            await FileHelper.SaveData(FileName.PARENT_FOLDER, FileName.LIST_CONTINENTS, listOfContinents);
 
             return listOfContinents;
         }
